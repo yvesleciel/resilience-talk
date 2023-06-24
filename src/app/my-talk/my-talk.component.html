@@ -1,0 +1,37 @@
+<div class="main-content-container container-fluid px-4 mb-4">
+  <!-- Page Header -->
+  <div class="page-header row no-gutters py-4">
+    <div class="col-12 col-sm-6 text-center text-sm-left mb-4 mb-sm-0">
+      <span class="text-uppercase page-subtitle">Dashboard</span>
+      <h3 class="page-title">Talks</h3>
+    </div>
+    <div class="col-12 col-sm-6 d-flex align-items-center">
+      <div class="d-inline-flex mb-sm-0 mx-auto ml-sm-auto mr-sm-0" role="group" aria-label="Page actions">
+        <a id="add-new-event" href="javascript:void(0)" (click)="addTalk()" class="btn btn-primary">
+          <i class="material-icons">add</i> New Talk </a>
+      </div>
+    </div>
+  </div>
+  <!-- End Page Header -->
+ <ng-container *ngIf="talks.length>0; else loading">
+   <div class="card mt-4" *ngFor="let talk of talks">
+     <div class="flex flex-row justify-content-end"><h6><button (click)="updateTalk(talk.ref.id)" class="btn btn-primary">update</button></h6></div>
+     <div class="card-body py-4 flex flex-row border border-blue justify-between">
+       <div class="basis-1/8 border-r border-indigo-100 pr-2"><h3>Evènement: </h3><p>Résilience Talk</p></div>
+       <div class="basis-1/8 px-2 border-r border-indigo-100"><h3>Date du talk:</h3><p>12-10-2022</p></div>
+       <div class="basis-1/8 px-2 border-r border-indigo-100" ><h3>Statut:</h3>
+         <p *ngIf="talk.status==='WAITING'" class="bg-warning">{{talk.status}}</p>
+         <p *ngIf="talk.status==='ACCEPTED'" class="bg-success">{{talk.status}}</p>
+         <p *ngIf="talk.status==='REFUSED'" class="bg-success">{{talk.status}}</p>
+       </div>
+       <div class="basis-1/8 px-2 border-r border-indigo-100"><h3>Titre:</h3><p>{{talk.data().titleOfTalk}}</p></div>
+       <div class="basis-1/2 pl-6 border-r border-indigo-100"><h3>Description:</h3><p class="text-justify">{{talk.data().descriptionOfTalk}}</p></div>
+     </div>
+   </div>
+ </ng-container>
+  <ng-template #loading>
+    <p class="bg-warning">
+      You don't have a talk yet, please submit one !!!
+    </p>
+  </ng-template>
+</div>

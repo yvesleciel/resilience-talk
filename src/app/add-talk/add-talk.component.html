@@ -1,0 +1,140 @@
+<div class="main-content-container container-fluid px-4">
+  <div class="row">
+    <div class="col-lg-8 mx-auto mt-4">
+      <div class="card card-small edit-user-details mb-4">
+        <div class="card-body p-0">
+          <form [formGroup]="talkForm"  class="py-4">
+            <div class="form-row mx-4">
+              <div class="col mb-3">
+                <h6 class="form-text m-0">General</h6>
+                <p class="form-text text-muted m-0">Setup your general profile details.</p>
+              </div>
+            </div>
+            <div class="form-row mx-4">
+              <div class="col-lg-8">
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="firstName">First Name<span class="text-danger">*</span></label>
+                    <input type="text" formControlName="firstName" class="form-control" id="firstName" value="">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="lastName">Last Name<span class="text-danger">*</span></label>
+                    <input type="text" formControlName="lastName" class="form-control" id="lastName" value="">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="userLocation">Location</label>
+                    <div class="input-group input-group-seamless">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="material-icons">&#xE0C8;</i>
+                        </div>
+                      </div>
+                      <input formControlName="localisation" type="text" class="form-control" value="">
+                    </div>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="phoneNumber">Phone Number<span class="text-danger">*</span></label>
+                    <div class="input-group input-group-seamless">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="material-icons">&#xE0CD;</i>
+                        </div>
+                      </div>
+                      <input formControlName="phoneNumber" type="text" class="form-control" id="phoneNumber" value="">
+                    </div>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="displayEmail">Display Email Publicly</label>
+                    <select formControlName="displayEmail" class="custom-select">
+                      <option value="1" selected>Yes, display my email</option>
+                      <option value="2">No, do not display my email.</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="emailAddress">Title of Talk<span class="text-danger">*</span></label>
+                    <div class="input-group input-group-seamless">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+<!--                          <i class="material-icons">&#xE0BE;</i>-->
+                        </div>
+                      </div>
+                      <input formControlName="titleOfTalk" type="text" class="form-control" id="emailAddress">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <label for="userProfilePicture" class="text-center w-100 mb-4">Upload Profile Picture<span class="text-danger">*</span></label>
+                <div class="edit-user-details__avatar m-auto">
+                  <img src="../../assets/images/img.png" alt="User Avatar" *ngIf="byteArray === undefined">
+                  <img [src]="byteArray" alt="User Avatar" *ngIf="byteArray !== undefined">
+                  <label class="edit-user-details__avatar__change">
+                    <i class="material-icons mr-1">&#xE439;</i>
+                    <input (change)="onDetectImages($event)" accept="image/*" type="file" id="userProfilePicture" class="d-none">
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-row mx-4">
+              <div class="form-group col-md-6">
+                <label for="userBio">Bio<span class="text-danger">*</span></label>
+                <textarea formControlName="descriptionOfTalk" style="min-height: 87px;" id="userBio" name="userBio" class="form-control">I'm a design focused engineer.</textarea>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="userTags">Tags</label>
+                <input id="userTags" formControlName="tags" name="userTags" value="" class="d-none">
+              </div>
+            </div>
+            <hr>
+            <div class="form-row mx-4">
+              <div class="col mb-3">
+                <h6 class="form-text m-0">Social</h6>
+                <p class="form-text text-muted m-0">Setup your social profiles info.</p>
+              </div>
+            </div>
+            <div class="form-row mx-4">
+              <div class="form-group col-md-4">
+                <label for="socialFacebook">Linkedin</label>
+                <div class="input-group input-group-seamless">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <i class="fab fa-linkedin"></i>
+                    </div>
+                  </div>
+                  <input formControlName="linkLinkedin" type="text" class="form-control" id="socialFacebook">
+                </div>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="socialTwitter">Twitter</label>
+                <div class="input-group input-group-seamless">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <i class="fab fa-twitter"></i>
+                    </div>
+                  </div>
+                  <input formControlName="linkTwitter" type="text" class="form-control" id="socialTwitter">
+                </div>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="socialGitHub">GitHub</label>
+                <div class="input-group input-group-seamless">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <i class="fab fa-github"></i>
+                    </div>
+                  </div>
+                  <input formControlName="linkGithub" type="text" class="form-control" id="socialGitHub">
+                </div>
+              </div>
+            </div>
+            <hr>
+          </form>
+        </div>
+        <div class="card-footer border-top">
+          <p>(*) fields obligates</p>
+          <button (click)="onSubmitTalk()" [disabled]="talkForm.invalid || !imgAlreadyLoad" class="btn btn-sm btn-accent ml-auto d-table mr-3">Submit Talk</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
